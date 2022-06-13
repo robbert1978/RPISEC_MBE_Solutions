@@ -1,2 +1,2 @@
 # RPISEC_MBE_Solutions
-http://security.cs.rpi.edu/courses/binexp-spring2015/
+[Link](https://github.com/RPISEC/MBE)
