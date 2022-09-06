@@ -7,54 +7,37 @@ libc = ELF("./libc-2.19.so")
 ld = ELF("./ld-2.19.so")
 
 context.binary = exe
-context.log_level='debug'
+#context.log_level='debug'
 #p=exe.process()
 #gdb.attach(p,gdbscript="b *main+810\nb *main+907")
 s=ssh(user="lab7C",password="lab07start",host="192.168.1.18",port=22)
 p=s.run("/levels/lab07/lab7C")
 def malloc_string(data:bytes):
     p.recv()
-    sleep(1)
     p.sendline(b"1")
-    sleep(1)
     p.sendline(data)
-    sleep(1)
 def malloc_num(num:int):
     p.recv()
-    sleep(1)
     p.sendline(b"2")
-    sleep(1)
     p.sendline(str(num).encode())
-    sleep(1)
 def del_string():
     p.recv()
-    sleep(1)
     p.sendline(b'3')
-    sleep(1)
 def del_num():
     p.recv()
-    sleep(1)
     p.sendline(b'4')
-    sleep(1)
 def print_string(index:int):
     p.recv()
-    sleep(1)
     p.sendline(b'5')
-    sleep(1)
     p.recv()
-    sleep(1)
     p.sendline(str(index).encode())
     sleep(1)
     return p.recv()[0:4][::-1]
 def print_num(index:int):
     p.recv()
-    sleep(1)
     p.sendline(b'6')
-    sleep(1)
     p.recv()
-    sleep(1)
     p.sendline(str(index).encode())
-    sleep(1)
     p.recvuntil(b":")
     sleep(1)
     return int(p.recvuntil(b'\n').decode().rstrip())
